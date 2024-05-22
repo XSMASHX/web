@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}Configuración{% endblock %}
+
+{% block content %}
+<h2>Configuración</h2>
+
+<h3>Agregar Habitación</h3>
+<form method="POST" action="{{ url_for('configuracion') }}" enctype="multipart/form-data" class="configuracion-form">
+    <input type="hidden" name="agregar">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+            <option value=""></option> <!-- Opción por defecto -->
+            <option value="matrimonial">matrimonial</option>
+            <option value="estándar">estándar</option>
+            <option value="individual">individual</option>
+            <option value="suite">suite</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required>
+    </div>
+    
+    <button type="submit">Agregar</button>
+</form>
+
+<h3>Eliminar Habitación</h3>
+<ul class="habitaciones-list configuracion-list">
+    {% for habitacion in habitaciones %}
+    <li class="habitacion-item configuracion-item">
+        <div class="habitacion-info">
+            <p><strong>Nombre:</strong> {{ habitacion[1] }}</p>
+            <p><strong>Tipo:</strong> {{ habitacion[2] }}</p>
+            <p><strong>Estado:</strong> {{ habitacion[3] }}</p>
+        </div>
+        <form method="POST" action="{{ url_for('configuracion') }}" style="display:inline;">
+            <input type="hidden" name="eliminar">
+            <input type="hidden" name="id" value="{{ habitacion[0] }}">
+            <button type="submit" class="eliminar-btn">Eliminar</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

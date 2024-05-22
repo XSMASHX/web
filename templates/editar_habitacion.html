@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}Editar Habitación{% endblock %}
+
+{% block content %}
+<h2>Editar Habitación</h2>
+
+<form method="POST" action="{{ url_for('editar_habitacion', id=habitacion['id']) }}" onsubmit="combineDates(event)" class="editar-habitacion-form">
+    <div class="form-group">
+        <label for="fecha_entrada">Fecha de Entrada:</label>
+        <input type="date" id="fecha_entrada" name="fecha_entrada" value="{{ habitacion['tiempo_reservacion'].split(' a ')[0] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fecha_salida">Fecha de Salida:</label>
+        <input type="date" id="fecha_salida" name="fecha_salida" value="{{ habitacion['tiempo_reservacion'].split(' a ')[1] }}" required>
+    </div>
+
+    <input type="hidden" id="tiempo_reservacion" name="tiempo_reservacion">
+
+    <div class="form-group">
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            <option value=""></option> <!-- Opción por defecto -->
+            <option value="ocupada" {% if habitacion['estado'] == 'ocupada' %}selected{% endif %}>ocupada</option>
+            <option value="libre" {% if habitacion['estado'] == 'libre' %}selected{% endif %}>libre</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" value="{{ habitacion['precio'] }}" min="0" required>
+    </div>
+
+    <div class="form-group">
+        <label for="metodo_pago">Método de Pago:</label>
+        <select id="metodo_pago" name="metodo_pago" required>
+            <option value=""></option> <!-- Opción por defecto -->
+            <option value="crédito" {% if habitacion['metodo_pago'] == 'crédito' %}selected{% endif %}>crédito</option>
+            <option value="débito" {% if habitacion['metodo_pago'] == 'débito' %}selected{% endif %}>débito</option>
+            <option value="al contado" {% if habitacion['metodo_pago'] == 'al contado' %}selected{% endif %}>al contado</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="numero_personas">Número de Personas:</label>
+        <input type="number" id="numero_personas" name="numero_personas" value="{{ habitacion['numero_personas'] }}" min="1" required>
+    </div>
+
+    <div class="form-group">
+        <label for="estado_pago">Estado de Pago:</label>
+        <select id="estado_pago" name="estado_pago" required>
+            <option value=""></option> <!-- Opción por defecto -->
+            <option value="solvente" {% if habitacion['estado_pago'] == 'solvente' %}selected{% endif %}>solvente</option>
+            <option value="insolvente" {% if habitacion['estado_pago'] == 'insolvente' %}selected{% endif %}>insolvente</option>
+        </select>
+    </div>
+
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+<a class="detalle-link" href="{{ url_for('habitacion_detalle', id=habitacion['id']) }}">Cancelar</a>
+
+<script>
+    function combineDates(event) {
+        event.preventDefault();
+        var fechaEntrada = document.getElementById('fecha_entrada').value;
+        var fechaSalida = document.getElementById('fecha_salida').value;
+        var tiempoReservacion = fechaEntrada + ' a ' + fechaSalida;
+        document.getElementById('tiempo_reservacion').value = tiempoReservacion;
+        event.target.submit();
+    }
+</script>
+{% endblock %}

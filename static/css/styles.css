@@ -1,0 +1,437 @@
+/* Estilos globales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.75em;
+    margin: 0;
+}
+
+header .user-info {
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+}
+
+header .user-info img {
+    margin-right: 50px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Altura del header */
+    left: 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #ced4da;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar nav ul li.logout a {
+    background-color: #dc3545; /* Red background for logout */
+    color: #fff;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #495057;
+    color: #fff;
+}
+
+.main {
+    margin-left: 270px; /* Espacio para la sidebar */
+    margin-top: 80px; /* Espacio para el header */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #007bff;
+    font-size: 1.75em;
+    margin-bottom: 20px;
+}
+
+/* Estilizar y reducir tamaño de los inputs del filtro */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px; /* Ajusta este valor para más separación */
+}
+
+.form-group {
+    flex: 1 1 150px; /* allow the input to grow but keep them small */
+    min-width: 150px; /* minimum width to prevent too small */
+}
+
+.form-group label {
+    font-size: 0.9em;
+    color: #495057;
+}
+
+.form-group select, .form-group input[type="text"] {
+    width: 100%;
+    padding: 5px; /* reduced padding for smaller input */
+    margin-top: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus, .form-group input[type="text"]:focus {
+    border-color: #007BFF;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 5px 10px; /* reduced padding for smaller button */
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+    align-self: flex-end; /* align the button at the end of the form */
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo de las fichas de habitaciones para que sean más cuadradas */
+.habitaciones-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* add gap between items */
+}
+
+.habitacion-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    width: calc(33.333% - 20px); /* Adjust the width to fit 3 per row with spacing */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.habitacion-item:hover {
+    transform: translateY(-5px);
+}
+
+.habitacion-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.habitacion-info img {
+    width: 100%; /* ensure the image is responsive */
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.habitacion-info .habitacion-details {
+    width: 100%;
+}
+
+.habitacion-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.habitacion-info p strong {
+    color: #333;
+}
+
+/* Estilos específicos para la página de detalle de habitación */
+.habitacion-detalle {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.habitacion-detalle p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.habitacion-detalle p strong {
+    color: #333;
+}
+
+.detalle-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Estilos específicos para la página de editar habitación */
+.editar-habitacion-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editar-habitacion-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.editar-habitacion-form label {
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.editar-habitacion-form input,
+.editar-habitacion-form select {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    transition: border-color 0.3s;
+}
+
+.editar-habitacion-form input:focus,
+.editar-habitacion-form select:focus {
+    border-color: #007BFF;
+}
+
+.editar-habitacion-form button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.editar-habitacion-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos específicos para la página de configuración */
+.configuracion-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.configuracion-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.configuracion-form label {
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.configuracion-form input[type="text"],
+.configuracion-form select,
+.configuracion-form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    transition: border-color 0.3s;
+}
+
+.configuracion-form input[type="text"]:focus,
+.configuracion-form select:focus,
+.configuracion-form input[type="file"]:focus {
+    border-color: #007BFF;
+}
+
+.configuracion-form button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.configuracion-form button:hover {
+    background-color: #0056b3;
+}
+
+.sidebar nav ul li.active a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.detalle-link {
+    margin-top: 10px;
+    padding: 10px 15px; /* Espaciado suficiente para un botón */
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    display: inline-block; /* Para que se vea como un botón */
+    text-align: center; /* Centrar el texto */
+}
+
+.detalle-link:hover {
+    background-color: #0056b3;
+}
+/* Estilos para el historial */
+.historial-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre las entradas */
+}
+
+.historial-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.historial-item:hover {
+    transform: translateY(-5px);
+}
+
+.historial-item p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.historial-item p strong {
+    color: #333;
+}
+
+.historial-item img {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.no-ordenes {
+    color: #dc3545; /* Red color for no orders message */
+    font-weight: bold;
+}
+
+/* Media queries para diseño responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        margin-top: 60px; /* Ajuste para dejar espacio para el encabezado */
+    }
+    
+    .main {
+        margin-left: 0;
+        margin-top: 130px; /* Ajuste para considerar la altura del header y sidebar */
+        padding: 15px;
+    }
+
+    .habitacion-item {
+        width: 100%; /* Una sola columna */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.25em;
+    }
+
+    .sidebar {
+        padding: 10px;
+        margin-top: 60px; /* Ajuste para dejar espacio para el encabezado */
+    }
+
+    .main {
+        margin-top: 120px; /* Ajuste para considerar la altura del header y sidebar */
+    }
+
+    .form-group label,
+    .form-group select,
+    .form-group input[type="text"],
+    form button {
+        font-size: 0.8em;
+    }
+}

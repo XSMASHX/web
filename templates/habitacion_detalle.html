@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Detalle de Habitación{% endblock %}
+
+{% block content %}
+<h2>Detalle de la Habitación</h2>
+
+{% if habitacion %}
+<div class="habitacion-detalle">
+    <p><strong>ID:</strong> {{ habitacion['id'] }}</p>
+    <p><strong>Nombre:</strong> {{ habitacion['nombre'] }}</p>
+    <p><strong>Tipo:</strong> {{ habitacion['tipo'] }}</p>
+    <p><strong>Estado:</strong> {{ habitacion['estado'] }}</p>
+    <p><strong>Tiempo de Reservación:</strong> {{ habitacion['tiempo_reservacion'] }}</p>
+    <p><strong>Precio:</strong> {{ habitacion['precio'] }}</p>
+    <p><strong>Método de Pago:</strong> {{ habitacion['metodo_pago'] }}</p>
+    <p><strong>Número de Personas:</strong> {{ habitacion['numero_personas'] }}</p>
+    <p><strong>ID de Orden:</strong> {{ habitacion['id_orden'] }}</p>
+    <p><strong>Estado de Pago:</strong> {{ habitacion['estado_pago'] }}</p>
+</div>
+{% else %}
+    <p>La habitación no se encontró.</p>
+{% endif %}
+
+<div class="detalle-buttons">
+    <a class="detalle-link" href="{{ url_for('habitaciones') }}">Volver a Habitaciones</a>
+    {% if habitacion %}
+    <a class="detalle-link" href="{{ url_for('editar_habitacion', id=habitacion['id']) }}">Editar</a>
+    {% endif %}
+</div>
+{% endblock %}
