@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}Habitaciones{% endblock %}
+
+{% block content %}
+<h2>Habitaciones</h2>
+<form method="GET" action="{{ url_for('habitaciones') }}">
+    <div class="form-group">
+        <label for="tipo">Filtrar por Tipo:</label>
+        <select name="tipo" id="tipo">
+            <option value="">Todos</option>
+            <option value="matrimonial">Matrimonial</option>
+            <option value="estándar">Estándar</option>
+            <option value="individual">Individual</option>
+            <option value="suite">Suite</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="estado">Filtrar por Estado:</label>
+        <select name="estado" id="estado">
+            <option value="">Todos</option>
+            <option value="libre">Libre</option>
+            <option value="ocupada">Ocupada</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="metodo_pago">Filtrar por Método de Pago:</label>
+        <select name="metodo_pago" id="metodo_pago">
+            <option value="">Todos</option>
+            <option value="credito">Crédito</option>
+            <option value="debito">Débito</option>
+            <option value="contado">Al Contado</option>
+        </select>
+    </div>
+
+    <button type="submit">Filtrar</button>
+</form>
+
+<ul class="habitaciones-list">
+    {% for habitacion in habitaciones %}
+    <li class="habitacion-item">
+        <div class="habitacion-info">
+            <img src="{{ url_for('static', filename='uploads/' ~ habitacion['imagen']) }}" alt="{{ habitacion['nombre'] }}">
+            <div class="habitacion-details">
+                <p><strong>Nombre:</strong> {{ habitacion['nombre'] }}</p>
+                <p><strong>Tipo:</strong> {{ habitacion['tipo'] }}</p>
+                <p><strong>Estado:</strong> {{ habitacion['estado'] }}</p>
+                <p><strong>Tiempo de Reservación:</strong> {{ habitacion['tiempo_reservacion'] }}</p>
+                <p><strong>Método de Pago:</strong> {{ habitacion['metodo_pago'] }}</p>
+                <a class="detalle-link" href="{{ url_for('habitacion_detalle', id=habitacion['id']) }}">Ver Detalles</a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

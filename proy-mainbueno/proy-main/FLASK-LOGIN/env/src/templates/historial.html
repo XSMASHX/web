@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Historial{% endblock %}
+
+{% block content %}
+
+<h2>Historial de Registros</h2>
+<ul class="historial-list">
+    {% if habitaciones_con_ordenes %}
+        {% for entrada in habitaciones_con_ordenes %}
+        <li class="historial-item">
+            <p><strong>ID de Habitación:</strong> {{ entrada[0] }}</p>
+            <p><strong>Nombre de la Habitación:</strong> {{ entrada[1] }}</p>
+            <p><strong>Tipo de Habitación:</strong> {{ entrada[2] }}</p>
+            <p><strong>Estado de la Habitación:</strong> {{ entrada[3] }}</p>
+           
+            <p><strong>Tiempo de Reservación:</strong> {{ entrada[5] }}</p>
+            {% if entrada[6] %}
+                <p><strong>ID de Orden:</strong> {{ entrada[6] }}</p>
+                <p><strong>Estado de la Orden:</strong> {{ entrada[7] }}</p>
+                <p><strong>Usuario ID:</strong> {{ entrada[8] }}</p>
+                <p><strong>Estado de Pago:</strong> {{ entrada[9] }}</p>
+            {% else %}
+                <p class="no-ordenes">No hay registros para esta habitación.</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    {% else %}
+        <p>No hay habitaciones disponibles.</p>
+    {% endif %}
+</ul>
+{% endblock %}
